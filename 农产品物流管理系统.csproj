@@ -182,5 +182,11 @@
   <ItemGroup>
     <None Include="image\农户操作.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="image\farmer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\saler.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
