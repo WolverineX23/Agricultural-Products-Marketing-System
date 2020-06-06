@@ -28,13 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.oleDbConnection1 = new System.Data.OleDb.OleDbConnection();
+            this.SuspendLayout();
+            // 
+            // oleDbConnection1
+            // 
+            this.oleDbConnection1.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\\MyData\\NIT\\大二下\\C#\\大作业\\APLS.accdb" +
+    "";
+            this.oleDbConnection1.InfoMessage += new System.Data.OleDb.OleDbInfoMessageEventHandler(this.oleDbConnection1_InfoMessage);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Data.OleDb.OleDbConnection oleDbConnection1;
     }
 }
 

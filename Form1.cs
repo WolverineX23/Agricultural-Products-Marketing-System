@@ -16,5 +16,10 @@ namespace 农产品物流管理系统
         {
             InitializeComponent();
         }
+
+        private void oleDbConnection1_InfoMessage(object sender, System.Data.OleDb.OleDbInfoMessageEventArgs e)
+        {
+
+        }
     }
 }
