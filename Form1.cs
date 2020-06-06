@@ -57,5 +57,10 @@ namespace 农产品物流管理系统
             pictureBox2.Size = new Size(227, 275);//227,275
             pictureBox2.Location = new Point(501, 75);
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            new Form2().ShowDialog();
+        }
     }
 }
