@@ -21,5 +21,10 @@ namespace 农产品物流管理系统
         {
             BackgroundImageLayout = ImageLayout.Stretch;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Form5().ShowDialog();
+        }
     }
 }
