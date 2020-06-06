@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MySql.Data.MySqlClient;
 namespace 农产品物流管理系统
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        MySqlConnection conn;
+        public Form2(MySqlConnection conn)
         {
+            this.conn = conn;
             InitializeComponent();
         }
 
@@ -36,7 +38,7 @@ namespace 农产品物流管理系统
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new Form3().ShowDialog();
+            new Form3(conn).ShowDialog();
         }
     }
 }
