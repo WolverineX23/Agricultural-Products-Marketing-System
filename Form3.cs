@@ -21,7 +21,7 @@ namespace 农产品物流管理系统
             string sql = "select district_name from district where district_sqe LIKE '.1._.' or district_sqe LIKE '.1.__.'";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
-            while(reader.Read())
+            while (reader.Read())
             {
                 comboBox1.Items.Add($"{reader.GetString("district_name")}");
             }
@@ -66,7 +66,7 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(label6.Text == "" && label7.Text == "" && label11.Text == "")
+            if (label6.Text == "" && label7.Text == "" && label11.Text == "")
             {
                 MessageBox.Show("注册成功！", "注册提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
             }

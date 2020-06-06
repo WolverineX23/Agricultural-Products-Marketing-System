@@ -14,7 +14,7 @@ namespace 农产品物流管理系统
 {
     public partial class Form1 : Form
     {
-        static String connetStr = "server=127.0.0.1;port=3306;user=root;password=zc000910; database=cls;";
+        static String connetStr = "server=127.0.0.1;port=3306;user=wx;password=wuxiao.04092313; database=cls;";
         MySqlConnection conn = new MySqlConnection(connetStr);
         public Form1()
         {
