@@ -143,7 +143,6 @@
 
         #endregion
 
-        private System.Data.OleDb.OleDbConnection oleDbConnection1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.PictureBox pictureBox1;
