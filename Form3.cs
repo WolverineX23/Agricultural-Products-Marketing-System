@@ -66,7 +66,27 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (label6.Text == "" && label7.Text == "" && label11.Text == "")
+            string address,pro,dic;
+            conn.Open();//验重
+            string sql_repeat = $"select FNo from farmer where FNo = '{textBox1.Text}'";
+            MySqlCommand cmd = new MySqlCommand(sql_repeat, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if(reader.Read())
+            {
+                label6.Text="账号已被注册！";
+            }
+            reader.Dispose();
+            conn.Close();
+
+            if(textBox6.Text.Length!=11||textBox6.Text.Substring(0,1)!="1")//验手机号
+            {
+                label1.Text = "格式错误！";
+            }
+            address = comboBox1.SelectedText+comboBox2.SelectedText;
+
+
+
+            if (label6.Text == "" && label7.Text == "" && label11.Text == "")//注册信息清零
             {
                 MessageBox.Show("注册成功！", "注册提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
             }
