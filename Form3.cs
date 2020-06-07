@@ -66,7 +66,11 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string address,pro,dic;
+            string address="";
+            string user="";
+            string name="";
+            string phone="";
+            string password="";
             conn.Open();//验重
             string sql_repeat = $"select FNo from farmer where FNo = '{textBox1.Text}'";
             MySqlCommand cmd = new MySqlCommand(sql_repeat, conn);
@@ -75,20 +79,47 @@ namespace 农产品物流管理系统
             {
                 label6.Text="账号已被注册！";
             }
+            else
+            {
+                label6.Text = "";
+                user = textBox1.Text;
+            }
             reader.Dispose();
             conn.Close();
 
             if(textBox6.Text.Length!=11||textBox6.Text.Substring(0,1)!="1")//验手机号
             {
-                label1.Text = "格式错误！";
+                label11.Text = "格式错误！";
             }
-            address = comboBox1.SelectedText+comboBox2.SelectedText;
-
-
-
-            if (label6.Text == "" && label7.Text == "" && label11.Text == "")//注册信息清零
+            else
             {
+                label11.Text = "";
+                phone = textBox6.Text;
+            }
+
+            if (textBox2.Text!=textBox3.Text)//验密码
+            {
+                label7.Text = "两次密码不一致！";
+            }
+            else
+            {
+                label7.Text = "";
+                password = textBox2.Text;
+            }
+
+            address = comboBox1.SelectedItem.ToString() + comboBox2.SelectedItem.ToString() + textBox5.Text;
+            name = textBox4.Text;
+
+
+            if (label6.Text == "" && label7.Text == "" && label11.Text == "")//无注册提示错误信息
+            {
+                conn.Open();
+                string sql_regi = $"insert into farmer(FNo,FPassword,FName,FAdress,FContact) values('{user}','{password}','{name}','{address}','{phone}');";
+                cmd = new MySqlCommand(sql_regi, conn);
+                int result = cmd.ExecuteNonQuery();
+                conn.Close();
                 MessageBox.Show("注册成功！", "注册提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+                this.Close();
             }
             else
             {
