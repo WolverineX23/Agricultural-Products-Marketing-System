@@ -13,6 +13,7 @@ namespace 农产品物流管理系统
     public partial class Form2 : Form
     {
         MySqlConnection conn;
+        String user = "";
         public Form2(MySqlConnection conn)
         {
             this.conn = conn;
@@ -45,8 +46,9 @@ namespace 农产品物流管理系统
         private void button1_Click(object sender, EventArgs e)
         {
             conn.Open();
+            string user = textBox1.Text;
             string password;
-            string sql_pas = $"select FPassword from farmer where FNo = '{textBox1.Text}'";
+            string sql_pas = $"select FPassword from farmer where FNo = '{user}'";
             MySqlCommand cmd = new MySqlCommand(sql_pas, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             if(!reader.Read())
@@ -67,17 +69,8 @@ namespace 农产品物流管理系统
             }
             label4.Text = "";//到此成功登陆
             this.Hide();
-            new Form4().ShowDialog();
+            new Form4(conn,user).ShowDialog();
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

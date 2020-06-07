@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+
 namespace 农产品物流管理系统
 {
     public partial class Form3 : Form
@@ -117,7 +118,6 @@ namespace 农产品物流管理系统
             }
             
             name = textBox4.Text;
-
 
             if (label6.Text == "" && label7.Text == "" && label11.Text == ""&&label13.Text=="")//无注册提示错误信息
             {

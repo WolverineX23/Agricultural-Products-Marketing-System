@@ -15,11 +15,15 @@ namespace 农产品物流管理系统
         public Form5()
         {
             InitializeComponent();
+            panel1.BackColor = Color.FromArgb(125, 255, 255, 255);
+            label1.BackColor = Color.FromArgb(0, 255, 255, 255);
+
         }
 
         private void Form5_Load(object sender, EventArgs e)
         {
             BackgroundImageLayout = ImageLayout.Stretch;
         }
+
     }
 }

@@ -63,7 +63,6 @@
             this.label1.Size = new System.Drawing.Size(173, 38);
             this.label1.TabIndex = 2;
             this.label1.Text = "农户接口";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -125,7 +124,6 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "登陆接口";
-            this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
