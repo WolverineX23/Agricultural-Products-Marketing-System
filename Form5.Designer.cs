@@ -173,7 +173,7 @@ namespace 农产品物流管理系统
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::农产品物流管理系统.Properties.Resources.农户操作;
-            this.ClientSize = new System.Drawing.Size(802, 553);
+            this.ClientSize = new System.Drawing.Size(1199, 830);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
