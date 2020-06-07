@@ -102,7 +102,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(239, 108);
+            this.comboBox1.Location = new System.Drawing.Point(238, 108);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 19;
@@ -292,6 +292,8 @@
             this.ClientSize = new System.Drawing.Size(982, 553);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "农户注册";

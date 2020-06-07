@@ -22,12 +22,15 @@ namespace 农产品物流管理系统
             try
             {
                 conn.Open();
-                label4.Text = "连接成功！";
+                MessageBox.Show("连接成功!", "系统连接提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
             }
             catch (MySqlException ex)
             {
+                MessageBox.Show("连接失败,无法继续操作，系统关闭!", "系统连接提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Console.WriteLine(ex.Message);
+                this.Close();
+                //Application.Exit();
             }
             finally
             {

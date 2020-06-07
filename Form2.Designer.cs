@@ -158,6 +158,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form2";
             this.Text = "农户登录";
             this.Load += new System.EventHandler(this.Form2_Load);
