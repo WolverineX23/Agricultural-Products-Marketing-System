@@ -44,8 +44,40 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
+            conn.Open();
+            string password;
+            string sql_pas = $"select FPassword from farmer where FNo = '{textBox1.Text}'";
+            MySqlCommand cmd = new MySqlCommand(sql_pas, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if(!reader.Read())
+            {
+                label5.Text = "该用户名未注册！";
+                reader.Dispose();
+                conn.Close();
+                return;
+            }
+            label5.Text = "";
+            password =reader.GetString("FPassword");
+            reader.Dispose();
+            conn.Close();
+            if (password != textBox2.Text)
+            {
+                label4.Text = "密码错误！";
+                return;
+            }
+            label4.Text = "";//到此成功登陆
+            this.Hide();
             new Form4().ShowDialog();
         }
 
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
