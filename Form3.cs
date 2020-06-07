@@ -106,12 +106,20 @@ namespace 农产品物流管理系统
                 label7.Text = "";
                 password = textBox2.Text;
             }
-
-            address = comboBox1.SelectedItem.ToString() + comboBox2.SelectedItem.ToString() + textBox5.Text;
+            if(comboBox1.SelectedItem==null|| comboBox2.SelectedItem==null|| textBox5.Text=="")
+            {
+                label13.Text = "请输入地址";
+            }
+            else 
+            {
+                label13.Text = "";
+                address = comboBox1.SelectedItem.ToString() + comboBox2.SelectedItem.ToString() + textBox5.Text;
+            }
+            
             name = textBox4.Text;
 
 
-            if (label6.Text == "" && label7.Text == "" && label11.Text == "")//无注册提示错误信息
+            if (label6.Text == "" && label7.Text == "" && label11.Text == ""&&label13.Text=="")//无注册提示错误信息
             {
                 conn.Open();
                 string sql_regi = $"insert into farmer(FNo,FPassword,FName,FAdress,FContact) values('{user}','{password}','{name}','{address}','{phone}');";
