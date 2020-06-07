@@ -57,9 +57,9 @@ namespace 农产品物流管理系统
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Location = new System.Drawing.Point(102, 111);
+            this.panel1.Location = new System.Drawing.Point(293, 206);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(600, 381);
+            this.panel1.Size = new System.Drawing.Size(620, 406);
             this.panel1.TabIndex = 0;
             // 
             // button2
@@ -162,7 +162,7 @@ namespace 农产品物流管理系统
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("楷体", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(197, 45);
+            this.label1.Location = new System.Drawing.Point(387, 92);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(424, 43);
             this.label1.TabIndex = 0;

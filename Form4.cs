@@ -96,7 +96,7 @@ namespace 农产品物流管理系统
         {
             richTextBox1.Text = "";
             richTextBox1.AppendText("\t\t\t\t\t   仓库\n");
-            richTextBox1.AppendText("生产编号\t农产品\t产量(kg)\t\t库存(kg)\t\t生产日期\n");
+            richTextBox1.AppendText("生产编号\t农产品\t\t产量(kg)\t\t库存(kg)\t\t生产日期\n");
             conn.Open();
             string sql_storehouse = $"SELECT PNo,CNo,ProdDate,Yeild,FStock FROM plante WHERE FNo = '{user}'";
             MySqlCommand cmd1 = new MySqlCommand(sql_storehouse, conn);
@@ -119,7 +119,7 @@ namespace 农产品物流管理系统
                     }
                     i++;
                 }
-                richTextBox1.AppendText(pno + "\t" + cname + "\t" + yeild + "\t\t\t" + stock + "\t\t\t" + timePro.ToShortDateString() + "\n");
+                richTextBox1.AppendText(pno + "\t" + cname + "\t\t" + yeild + "\t\t\t" + stock + "\t\t\t" + timePro.ToShortDateString() + "\n");
             }
             conn.Close();
             reader.Close();
