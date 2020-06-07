@@ -8,7 +8,7 @@ namespace 农产品物流管理系统
 {
     public class Farmer
     {
-        string fno, fpassword, fname, faddress, fcontact;
+        public string fno, fpassword, fname, faddress, fcontact;
         public Farmer()
         {
             fno = "";
