@@ -37,6 +37,7 @@
             this.BackgroundImage = global::农产品物流管理系统.Properties.Resources.农户操作;
             this.ClientSize = new System.Drawing.Size(802, 553);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form5";
             this.Text = "Form5";
             this.Load += new System.EventHandler(this.Form5_Load);
