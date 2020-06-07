@@ -41,7 +41,7 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form5().ShowDialog();
+            new Form5(conn,user).ShowDialog();
         }
 
         private void label1_Click(object sender, EventArgs e)
