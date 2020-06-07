@@ -105,10 +105,10 @@ namespace 农产品物流管理系统
 
         private void button2_Click(object sender, EventArgs e)
         {
-            conn.Open();
+           /* conn.Open();
             string sql_tosto = $"insert into plante (PNo,FNo,CNo,ProdDate,Yeild(kg),FStock(kg),isFresh) values('{label6.Text}','{user}','{}','{dateTimePicker1.Value.ToString()}','{textBox1.Text}','{textBox1.Text}','0');";
             MySqlCommand cmd = new MySqlCommand(sql_tosto, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = cmd.ExecuteReader();*/
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
