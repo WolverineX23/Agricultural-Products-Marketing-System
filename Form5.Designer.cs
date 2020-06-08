@@ -191,7 +191,6 @@ namespace 农产品物流管理系统
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         #endregion

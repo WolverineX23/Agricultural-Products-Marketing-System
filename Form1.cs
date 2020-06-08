@@ -12,7 +12,7 @@ namespace 农产品物流管理系统
 {
     public partial class Form1 : Form
     {
-        static string connetStr = "server=127.0.0.1;port=3306;user=wx;password=wuxiao.04092313; database=cls;";
+        static string connetStr = "server=127.0.0.1;port=3306;user=root;password=zc000910; database=cls;";
         MySqlConnection conn = new MySqlConnection(connetStr);
         public Form1()
         {
@@ -64,6 +64,16 @@ namespace 农产品物流管理系统
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             new Form2(conn).ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            new Form8(conn).ShowDialog();
         }
     }
 }
