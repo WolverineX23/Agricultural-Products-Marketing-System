@@ -46,7 +46,7 @@ namespace 农产品物流管理系统
         private void button1_Click(object sender, EventArgs e)
         {
             conn.Open();
-            string user = textBox1.Text;
+            user = textBox1.Text;
             string password;
             string sql_pas = $"select TPassword from tradesman where TNo = '{user}'";
             MySqlCommand cmd = new MySqlCommand(sql_pas, conn);
@@ -68,8 +68,14 @@ namespace 农产品物流管理系统
                 return;
             }
             label4.Text = "";//到此成功登陆
-            this.Hide();
+            this.Close();
+            new Form10(conn, textBox1.Text).ShowDialog();
+
         }
 
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
