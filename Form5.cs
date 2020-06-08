@@ -21,6 +21,7 @@ namespace 农产品物流管理系统
         {
             
             this.conn = conn;
+            this.user = user;
             InitializeComponent();
             panel1.BackColor = Color.FromArgb(125, 255, 255, 255);
             label1.BackColor = Color.FromArgb(0, 255, 255, 255);
@@ -105,13 +106,29 @@ namespace 农产品物流管理系统
 
         private void button2_Click(object sender, EventArgs e)
         {
-           /* conn.Open();
-            string sql_tosto = $"insert into plante (PNo,FNo,CNo,ProdDate,Yeild(kg),FStock(kg),isFresh) values('{label6.Text}','{user}','{}','{dateTimePicker1.Value.ToString()}','{textBox1.Text}','{textBox1.Text}','0');";
-            MySqlCommand cmd = new MySqlCommand(sql_tosto, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();*/
+            string selected;
+            conn.Open();
+            selected = comboBox1.SelectedItem.ToString();
+            string sql = $"select CNo from crops where CName ='{selected}'";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            Cno = reader.GetString("CNo");
+            reader.Dispose();
+
+            string sql_ins = $"insert into plante (PNo,FNo,CNo,ProdDate,Yeild,FStock,isFresh) values('{label6.Text}','{user}','{Cno}','{dateTimePicker1.Value.ToString()}',{textBox1.Text},{textBox1.Text},0);";
+            cmd = new MySqlCommand(sql_ins, conn);
+            int result = cmd.ExecuteNonQuery();
+            conn.Close();
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

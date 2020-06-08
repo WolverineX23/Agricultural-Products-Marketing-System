@@ -61,6 +61,7 @@ namespace 农产品物流管理系统
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(600, 381);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button2
             // 
