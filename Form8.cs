@@ -69,7 +69,7 @@ namespace 农产品物流管理系统
             }
             label4.Text = "";//到此成功登陆
             this.Close();
-            new Form10(conn, textBox1.Text).ShowDialog();
+            new Form10(conn, user).ShowDialog();
 
         }
 

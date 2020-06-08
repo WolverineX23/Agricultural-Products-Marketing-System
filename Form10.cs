@@ -36,48 +36,15 @@ namespace 农产品物流管理系统
 
             //设置label1的值
             conn.Open();
-            string sql_tip = $"SELECT FName FROM farmer WHERE FNo = '{user}'";
+            string sql_tip = $"SELECT TName FROM tradesman WHERE TNo = '{user}'";
             MySqlCommand cmd = new MySqlCommand(sql_tip, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            name = reader.GetString("FName");
+            name = reader.GetString("TName");
             reader.Dispose();
             conn.Close();
             label1.Text = "欢迎" + name + "~";
 
-            //过期智能提醒
-            DateTime timeNow = System.DateTime.Now;//获取当前时间
-
-            conn.Open();
-            string sql_date = $"SELECT CNo,ProdDate,FStock FROM plante WHERE FNo = '{user}'";
-            MySqlCommand cmd1 = new MySqlCommand(sql_date, conn);
-            MySqlDataReader reader1 = cmd1.ExecuteReader();
-            while (reader1.Read())
-            {
-                cno = reader1.GetString("CNo");
-                timePro = reader1.GetDateTime("ProdDate");
-                stock = reader1.GetInt32("FStock");
-                int i = 0;
-                while (Common.crops[i] != null)
-                {
-                    if (Common.crops[i].cno.Equals(cno))
-                    {
-                        freshday = Common.crops[i].freshness;
-                        cname = Common.crops[i].cname;
-                        break;
-                    }
-                    i++;
-                }
-                sd = new SubDate(timePro, timeNow);
-                leave = freshday - sd.dateSub();//计算剩余天数
-                if (leave > freshday * 0.2) { }
-                else if (leave <= 0)
-                    richTextBox1.AppendText(cname + "\t\t\t" + stock + "\t\t\t\t已过期\n");
-                else
-                    richTextBox1.AppendText(cname + "\t\t\t" + stock + "\t\t\t\t" + leave + "\n");
-            }
-            conn.Close();
-            reader1.Close();
         }
 
         private void Form10_Load(object sender, EventArgs e)
@@ -88,7 +55,7 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form5(conn, user).ShowDialog();
+            new Form11(conn, user).ShowDialog();
         }
 
 
