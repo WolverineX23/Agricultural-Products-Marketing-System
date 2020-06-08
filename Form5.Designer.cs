@@ -180,7 +180,7 @@ namespace 农产品物流管理系统
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form5";
-            this.Text = "Form5";
+            this.Text = "农产品生产入库";
             this.Load += new System.EventHandler(this.Form5_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

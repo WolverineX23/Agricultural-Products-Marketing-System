@@ -114,7 +114,7 @@ namespace 农产品物流管理系统
             else
             {
                 label13.Text = "";
-                address = comboBox1.SelectedItem.ToString() + comboBox2.SelectedItem.ToString() + textBox5.Text;
+                address = comboBox1.SelectedItem.ToString() +"省"+ comboBox2.SelectedItem.ToString() +"市"+ textBox5.Text;
             }
 
             name = textBox4.Text;

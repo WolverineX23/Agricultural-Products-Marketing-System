@@ -326,7 +326,7 @@
             this.MaximizeBox = false;
             this.Name = "Form9";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "农户注册";
+            this.Text = "商户注册";
             this.Load += new System.EventHandler(this.Form9_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

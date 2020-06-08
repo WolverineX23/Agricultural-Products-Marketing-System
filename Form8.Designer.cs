@@ -174,7 +174,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form8";
-            this.Text = "农户登录";
+            this.Text = "商户登录";
             this.Load += new System.EventHandler(this.Form8_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
