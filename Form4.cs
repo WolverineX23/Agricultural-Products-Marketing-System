@@ -14,7 +14,7 @@ namespace 农产品物流管理系统
     public partial class Form4 : Form
     {
         MySqlConnection conn = null;
-        string user = "";
+        string user = "";//农户编号--fno
         DateTime timePro = new DateTime();//获取产品生产日期
         string pno="";//生产编号
         string cno;//农产品编号
@@ -23,6 +23,14 @@ namespace 农产品物流管理系统
         int stock = 0;//库存
         int freshday = 0;//农产品保鲜期
         int leave;//剩余保鲜天数
+
+        //交易物流
+        string tno = "";//商户编号
+        string tname = "";//商户姓名
+        string goods = "";//交易物资
+        int weight=0;//交易重量
+        DateTime timeDeal = new DateTime();//交易时间
+
         SubDate sd;
         public Form4(MySqlConnection conn,string user)
         {
@@ -120,6 +128,79 @@ namespace 农产品物流管理系统
                     i++;
                 }
                 richTextBox1.AppendText(pno + "\t" + cname + "\t\t" + yeild + "\t\t\t" + stock + "\t\t\t" + timePro.ToShortDateString() + "\n");
+            }
+            conn.Close();
+            reader.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = "";
+            richTextBox1.AppendText("保鲜期到期提醒(低于原保质期天数的0.2倍):\n");
+            richTextBox1.AppendText("农产品\t\t\t库存(kg)\t\t\t剩余保质期(day)\n");
+
+            DateTime timeNow = System.DateTime.Now;//获取当前时间
+
+            conn.Open();
+            string sql_date = $"SELECT CNo,ProdDate,FStock FROM plante WHERE FNo = '{user}'";
+            MySqlCommand cmd1 = new MySqlCommand(sql_date, conn);
+            MySqlDataReader reader1 = cmd1.ExecuteReader();
+            while (reader1.Read())
+            {
+                cno = reader1.GetString("CNo");
+                timePro = reader1.GetDateTime("ProdDate");
+                stock = reader1.GetInt32("FStock");
+                int i = 0;
+                while (Common.crops[i] != null)
+                {
+                    if (Common.crops[i].cno.Equals(cno))
+                    {
+                        freshday = Common.crops[i].freshness;
+                        cname = Common.crops[i].cname;
+                        break;
+                    }
+                    i++;
+                }
+                sd = new SubDate(timePro, timeNow);
+                leave = freshday - sd.dateSub();//计算剩余天数
+                if (leave > freshday * 0.2) { }
+                else if (leave <= 0)
+                    richTextBox1.AppendText(cname + "\t\t\t" + stock + "\t\t\t\t已过期\n");
+                else
+                    richTextBox1.AppendText(cname + "\t\t\t" + stock + "\t\t\t\t" + leave + "\n");
+            }
+            conn.Close();
+            reader1.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = "";
+            richTextBox1.AppendText("交易记录：\n");
+            richTextBox1.AppendText("批发商\t\t农产品\t\t重量(kg)\t\t交易日期\n");
+
+            conn.Open();
+            string sql_log = $"SELECT TNo,LGoods,Weight,DateTime FROM logistics WHERE FNo = '{user}'";
+            MySqlCommand cmd = new MySqlCommand(sql_log, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                tno = reader.GetString("TNo");
+                goods = reader.GetString("LGoods");
+                weight = reader.GetInt32("Weight");
+                timeDeal = reader.GetDateTime("DateTime");
+
+                /*string sql_tname = $"SELECT TName FROM tradesman WHERE TNo = '{tno}'";
+                MySqlCommand cmd1 = new MySqlCommand(sql_tname, conn);
+                MySqlDataReader reader1 = cmd1.ExecuteReader();
+                tname = reader1.GetString("TName");*/
+
+                richTextBox1.AppendText(tno + "\t\t\t" + goods + "\t\t" + weight + "\t\t\t" + timeDeal.ToShortDateString() + "\n");
             }
             conn.Close();
             reader.Close();
