@@ -51,7 +51,9 @@ namespace 农产品物流管理系统
                 reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-
+                    ran = new Random();
+                    n = ran.Next(100000000);
+                    Pno = n.ToString();
                 }
                 else
                 {
@@ -60,7 +62,7 @@ namespace 农产品物流管理系统
                 reader.Dispose();
                 conn.Close();
             }
-            label6.Text = Pno;
+            textBox2.Text = Pno;
         }
 
         private void Form5_Load(object sender, EventArgs e)
@@ -88,7 +90,9 @@ namespace 农产品物流管理系统
                 MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-
+                    ran = new Random();
+                    n = ran.Next(100000000);
+                    Pno = n.ToString();
                 }
                 else
                 {
@@ -97,7 +101,7 @@ namespace 农产品物流管理系统
                 reader.Dispose();
                 conn.Close();
             }
-            label6.Text = Pno;
+            textBox2.Text = Pno;
         }
         
         private void label3_Click(object sender, EventArgs e)
@@ -116,21 +120,24 @@ namespace 农产品物流管理系统
             Cno = reader.GetString("CNo");
             reader.Dispose();
 
-            string sql_ins = $"insert into plante (PNo,FNo,CNo,ProdDate,Yeild,FStock,isFresh) values('{label6.Text}','{user}','{Cno}','{dateTimePicker1.Value.ToString()}',{textBox1.Text},{textBox1.Text},0);";
-            cmd = new MySqlCommand(sql_ins, conn);
-            int result = cmd.ExecuteNonQuery();
-            conn.Close();
-
+            try
+            {
+                string sql_ins = $"insert into plante (PNo,FNo,CNo,ProdDate,Yeild,FStock,isFresh) values('{textBox2.Text}','{user}','{Cno}','{dateTimePicker1.Value.ToString()}',{textBox1.Text},{textBox1.Text},0);";
+                cmd = new MySqlCommand(sql_ins, conn);
+                int result = cmd.ExecuteNonQuery();
+                MessageBox.Show("入库成功!", "入库提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            catch (Exception e1)
+            {
+                MessageBox.Show("入库失败,请重新操作!", "入库提示", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Console.WriteLine(e1.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+   
     }
 }
