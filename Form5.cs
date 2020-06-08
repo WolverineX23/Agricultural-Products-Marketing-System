@@ -82,13 +82,15 @@ namespace 农产品物流管理系统
 
             while (f == 1)
             {
+                n = ran.Next(100000000);
+                Pno = n.ToString();
                 conn.Open();
                 string sql_isdouble = $"select PNo from plante where PNo= '{Pno}' ;";
                 MySqlCommand cmd = new MySqlCommand(sql_isdouble, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-
+                    f = 1;
                 }
                 else
                 {
