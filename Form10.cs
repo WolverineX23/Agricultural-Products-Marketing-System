@@ -55,7 +55,7 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form11().ShowDialog();
+            new Form11(conn,user).ShowDialog();
         }
 
 

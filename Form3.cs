@@ -38,6 +38,8 @@ namespace 农产品物流管理系统
             label9.BackColor = Color.FromArgb(0, 255, 255, 255);
             label10.BackColor = Color.FromArgb(0, 255, 255, 255);
             label11.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label12.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label13.BackColor = Color.FromArgb(0, 255, 255, 255);
             checkBox1.BackColor = Color.FromArgb(0, 255, 255, 255);
         }
 
@@ -55,13 +57,13 @@ namespace 农产品物流管理系统
         {
             if (checkBox1.Checked)
             {
-                textBox2.PasswordChar = '\0';
-                textBox3.PasswordChar = '\0';
+                textBox5.PasswordChar = '\0';
+                textBox6.PasswordChar = '\0';
             }
             else
             {
-                textBox2.PasswordChar = '*';
-                textBox3.PasswordChar = '*';
+                textBox5.PasswordChar = '*';
+                textBox6.PasswordChar = '*';
             }
         }
 
@@ -88,36 +90,36 @@ namespace 农产品物流管理系统
             reader.Dispose();
             conn.Close();
 
-            if(textBox6.Text.Length!=11||textBox6.Text.Substring(0,1)!="1")//验手机号
+            if(textBox4.Text.Length!=11||textBox4.Text.Substring(0,1)!="1")//验手机号
             {
                 label11.Text = "格式错误！";
             }
             else
             {
                 label11.Text = "";
-                phone = textBox6.Text;
+                phone = textBox4.Text;
             }
 
-            if (textBox2.Text!=textBox3.Text)//验密码
+            if (textBox5.Text!=textBox6.Text)//验密码
             {
                 label7.Text = "两次密码不一致！";
             }
             else
             {
                 label7.Text = "";
-                password = textBox2.Text;
+                password = textBox5.Text;
             }
-            if(comboBox1.SelectedItem==null|| comboBox2.SelectedItem==null|| textBox5.Text=="")
+            if(comboBox1.SelectedItem==null|| comboBox2.SelectedItem==null|| textBox3.Text=="")
             {
                 label13.Text = "请输入地址";
             }
             else 
             {
                 label13.Text = "";
-                address = comboBox1.SelectedItem.ToString() +"省"+ comboBox2.SelectedItem.ToString() +"市"+ textBox5.Text;
+                address = comboBox1.SelectedItem.ToString() +"省"+ comboBox2.SelectedItem.ToString() +"市"+ textBox3.Text;
             }
             
-            name = textBox4.Text;
+            name = textBox2.Text;
 
             if (label6.Text == "" && label7.Text == "" && label11.Text == ""&&label13.Text=="")//无注册提示错误信息
             {

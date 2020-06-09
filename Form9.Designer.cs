@@ -119,13 +119,15 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(238, 137);
+            this.textBox5.Location = new System.Drawing.Point(238, 217);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(251, 28);
+            this.textBox5.PasswordChar = '*';
+            this.textBox5.Size = new System.Drawing.Size(171, 28);
             this.textBox5.TabIndex = 21;
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(368, 98);
             this.comboBox2.Name = "comboBox2";
@@ -134,6 +136,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(238, 98);
             this.comboBox1.Name = "comboBox1";
@@ -153,14 +156,15 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(238, 178);
+            this.textBox6.Location = new System.Drawing.Point(238, 258);
             this.textBox6.Name = "textBox6";
+            this.textBox6.PasswordChar = '*';
             this.textBox6.Size = new System.Drawing.Size(171, 28);
             this.textBox6.TabIndex = 17;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(238, 59);
+            this.textBox4.Location = new System.Drawing.Point(238, 173);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(171, 28);
             this.textBox4.TabIndex = 15;
@@ -169,7 +173,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(62, 173);
+            this.label10.Location = new System.Drawing.Point(62, 176);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(120, 25);
             this.label10.TabIndex = 14;
@@ -179,7 +183,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(116, 98);
+            this.label9.Location = new System.Drawing.Point(116, 99);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 25);
             this.label9.TabIndex = 13;
@@ -189,7 +193,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(116, 54);
+            this.label8.Location = new System.Drawing.Point(116, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 25);
             this.label8.TabIndex = 12;
@@ -263,23 +267,21 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(238, 261);
+            this.textBox3.Location = new System.Drawing.Point(238, 134);
             this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(171, 28);
+            this.textBox3.Size = new System.Drawing.Size(251, 28);
             this.textBox3.TabIndex = 5;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(238, 220);
+            this.textBox2.Location = new System.Drawing.Point(238, 54);
             this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(171, 28);
             this.textBox2.TabIndex = 4;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(238, 17);
+            this.textBox1.Location = new System.Drawing.Point(238, 14);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(171, 28);
             this.textBox1.TabIndex = 3;

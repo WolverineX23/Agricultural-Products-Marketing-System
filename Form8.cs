@@ -27,6 +27,7 @@ namespace 农产品物流管理系统
             label2.BackColor = Color.FromArgb(0, 255, 255, 255);
             label3.BackColor = Color.FromArgb(0, 255, 255, 255);
             label4.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label5.BackColor = Color.FromArgb(0, 255, 255, 255);
             checkBox1.BackColor = Color.FromArgb(0, 255, 255, 255);
         }
 
@@ -73,9 +74,5 @@ namespace 农产品物流管理系统
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

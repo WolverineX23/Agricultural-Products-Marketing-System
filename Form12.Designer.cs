@@ -43,7 +43,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("楷体", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(348, 45);
+            this.label1.Location = new System.Drawing.Point(292, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(177, 40);
             this.label1.TabIndex = 0;
@@ -57,9 +57,9 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Location = new System.Drawing.Point(103, 96);
+            this.panel1.Location = new System.Drawing.Point(124, 159);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(655, 341);
+            this.panel1.Size = new System.Drawing.Size(542, 476);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -67,7 +67,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(147, 227);
+            this.label5.Location = new System.Drawing.Point(103, 271);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 25);
             this.label5.TabIndex = 9;
@@ -76,7 +76,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Location = new System.Drawing.Point(299, 227);
+            this.dateTimePicker1.Location = new System.Drawing.Point(250, 271);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(210, 25);
             this.dateTimePicker1.TabIndex = 7;
@@ -85,7 +85,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(147, 165);
+            this.label4.Location = new System.Drawing.Point(103, 177);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 25);
             this.label4.TabIndex = 6;
@@ -95,7 +95,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(95, 107);
+            this.label3.Location = new System.Drawing.Point(51, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(168, 25);
             this.label3.TabIndex = 5;
@@ -104,14 +104,14 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(299, 109);
+            this.comboBox2.Location = new System.Drawing.Point(250, 93);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(210, 23);
             this.comboBox2.TabIndex = 3;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(299, 165);
+            this.textBox1.Location = new System.Drawing.Point(250, 177);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(210, 25);
             this.textBox1.TabIndex = 2;
@@ -121,9 +121,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::农产品物流管理系统.Properties.Resources.采购;
-            this.ClientSize = new System.Drawing.Size(886, 927);
+            this.ClientSize = new System.Drawing.Size(802, 853);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form12";
             this.Text = "Form12";
             this.Load += new System.EventHandler(this.Form12_Load);

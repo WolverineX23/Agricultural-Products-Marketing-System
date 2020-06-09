@@ -119,9 +119,10 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(238, 137);
+            this.textBox5.Location = new System.Drawing.Point(238, 217);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(251, 28);
+            this.textBox5.PasswordChar = '*';
+            this.textBox5.Size = new System.Drawing.Size(171, 28);
             this.textBox5.TabIndex = 21;
             // 
             // comboBox2
@@ -156,14 +157,15 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(238, 178);
+            this.textBox6.Location = new System.Drawing.Point(238, 261);
             this.textBox6.Name = "textBox6";
+            this.textBox6.PasswordChar = '*';
             this.textBox6.Size = new System.Drawing.Size(171, 28);
             this.textBox6.TabIndex = 17;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(238, 59);
+            this.textBox4.Location = new System.Drawing.Point(238, 176);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(171, 28);
             this.textBox4.TabIndex = 15;
@@ -172,7 +174,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(62, 173);
+            this.label10.Location = new System.Drawing.Point(62, 179);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(120, 25);
             this.label10.TabIndex = 14;
@@ -192,7 +194,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.Location = new System.Drawing.Point(116, 54);
+            this.label8.Location = new System.Drawing.Point(116, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 25);
             this.label8.TabIndex = 12;
@@ -266,23 +268,21 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(238, 261);
+            this.textBox3.Location = new System.Drawing.Point(238, 134);
             this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(171, 28);
+            this.textBox3.Size = new System.Drawing.Size(251, 28);
             this.textBox3.TabIndex = 5;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(238, 220);
+            this.textBox2.Location = new System.Drawing.Point(238, 54);
             this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(171, 28);
             this.textBox2.TabIndex = 4;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(238, 17);
+            this.textBox1.Location = new System.Drawing.Point(238, 14);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(171, 28);
             this.textBox1.TabIndex = 3;
@@ -291,7 +291,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("楷体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(62, 261);
+            this.label4.Location = new System.Drawing.Point(62, 264);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(120, 25);
             this.label4.TabIndex = 2;
