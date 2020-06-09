@@ -122,7 +122,7 @@ namespace 农产品物流管理系统
             if (label6.Text == "" && label7.Text == "" && label11.Text == ""&&label13.Text=="")//无注册提示错误信息
             {
                 conn.Open();
-                string sql_regi = $"insert into farmer(FNo,FPassword,FName,FAdress,FContact) values('{user}','{password}','{name}','{address}','{phone}');";
+                string sql_regi = $"insert into farmer(FNo,FPassword,FName,FAddress,FContact) values('{user}','{password}','{name}','{address}','{phone}');";
                 cmd = new MySqlCommand(sql_regi, conn);
                 int result = cmd.ExecuteNonQuery();
                 conn.Close();

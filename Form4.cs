@@ -135,7 +135,66 @@ namespace 农产品物流管理系统
 
         private void button5_Click(object sender, EventArgs e)
         {
+            richTextBox1.Text = "";
+            richTextBox1.AppendText("历史物流信息：\n");
+            richTextBox1.AppendText("物流单号\t\t\t物品\t\t\t重量(kg)\t\t\t发货人\t\t联系电话\t\t\t\t地址\t\t\t\t\t\t\t收货人\t\t联系电话\t\t\t\t地址\t\t\t\t\t\t\t\t交易日期\t\t\t\t签收日期\n");
+            LogInformation[] ligroup = new LogInformation[20];
+            LogInformation li = null;
+            int i = -1;
 
+            conn.Open();
+            string sql_log = $"SELECT LNo,TNo,LGoods,Weight,DateTime,ArrivalTime FROM logistics WHERE FNo = '{user}'";
+            MySqlCommand cmd = new MySqlCommand(sql_log,conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            //添加基本信息
+            while (reader.Read())
+            {
+                li = new LogInformation();
+                li.lno = reader.GetString("LNo");
+                li.tno = reader.GetString("TNo");
+                li.goods = reader.GetString("LGoods");
+                li.weight = reader.GetInt32("Weight");
+                li.timeDeal = reader.GetDateTime("DateTime");
+                li.timeArrive = reader.GetDateTime("ArrivalTime");
+
+                ligroup[++i] = li;//往数组中添加该对象
+            }
+            reader.Close();
+
+            //添加农户信息
+            string fname, faddress, fcontact;
+            string sql_farmer = $"SELECT FName,FAddress,FContact FROM farmer WHERE FNo = '{user}'";
+            cmd = new MySqlCommand(sql_farmer, conn);
+            MySqlDataReader reader1 = cmd.ExecuteReader();
+            reader1.Read();
+            fname = reader1.GetString("FName");
+            faddress = reader1.GetString("FAddress");
+            fcontact = reader1.GetString("FContact");
+            reader1.Close();
+
+            //添加商户信息
+            i = 0;
+            string sql_tradesman = "";
+            MySqlDataReader reader2 = null;
+            while (ligroup[i] != null)
+            {
+                sql_tradesman = $"SELECT TName,TAddress,TContact FROM tradesman WHERE TNo = '{ligroup[i].tno}'";
+                cmd = new MySqlCommand(sql_tradesman, conn);
+                reader2 = cmd.ExecuteReader();
+                reader2.Read();
+                ligroup[i].tname = reader2.GetString("TName");
+                ligroup[i].taddress = reader2.GetString("TAddress");
+                ligroup[i].tcontact = reader2.GetString("TContact");
+
+                richTextBox1.AppendText(ligroup[i].lno + "\t\t\t" + ligroup[i].goods + "\t\t" + ligroup[i].weight + "\t\t\t\t" + 
+                    fname + "\t\t\t" + fcontact + "\t\t\t" + faddress + "\t\t" + 
+                    ligroup[i].tname + "\t\t" + ligroup[i].tcontact + "\t\t\t" + ligroup[i].taddress + "\t\t\t" +
+                    ligroup[i].timeDeal.ToLongDateString() + "\t\t\t" + ligroup[i].timeArrive.ToShortDateString() + "\n");
+                i++;
+                reader2.Close();
+            }
+
+            conn.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
