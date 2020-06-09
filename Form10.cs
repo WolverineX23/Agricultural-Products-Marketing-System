@@ -91,5 +91,10 @@ namespace 农产品物流管理系统
             conn.Close();
             reader.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new Form12(conn, user).ShowDialog();
+        }
     }
 }

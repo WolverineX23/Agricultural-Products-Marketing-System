@@ -31,11 +31,18 @@ namespace 农产品物流管理系统
         private void Form11_Load(object sender, EventArgs e)
         {
             panel1.BackColor = Color.FromArgb(125, 255, 255, 255);
+            label1.BackColor = Color.FromArgb(0, 255, 255, 255);
             label2.BackColor = Color.FromArgb(0, 255, 255, 255);
             label3.BackColor = Color.FromArgb(0, 255, 255, 255);
             label4.BackColor = Color.FromArgb(0, 255, 255, 255);
             label5.BackColor = Color.FromArgb(0, 255, 255, 255);
             label6.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label7.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label8.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label9.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label10.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label11.BackColor = Color.FromArgb(0, 255, 255, 255);
+            
 
             int f = 1;
             Random ran = new Random();
