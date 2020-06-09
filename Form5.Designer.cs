@@ -31,6 +31,7 @@ namespace 农产品物流管理系统
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,11 +43,14 @@ namespace 农产品物流管理系统
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -61,6 +65,17 @@ namespace 农产品物流管理系统
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(620, 406);
             this.panel1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(421, 257);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 19);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "label6";
             // 
             // textBox2
             // 
@@ -111,18 +126,17 @@ namespace 农产品物流管理系统
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(178, 24);
             this.label4.TabIndex = 5;
-            this.label4.Text = "入库数量(Kg)：";
+            this.label4.Text = "入库重量(kg)：";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(73, 191);
+            this.label3.Location = new System.Drawing.Point(97, 192);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 24);
+            this.label3.Size = new System.Drawing.Size(106, 24);
             this.label3.TabIndex = 4;
-            this.label3.Text = "入库种类：";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label3.Text = "农产品：";
             // 
             // label2
             // 
@@ -140,7 +154,6 @@ namespace 农产品物流管理系统
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(155, 25);
             this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // comboBox1
             // 
@@ -168,6 +181,17 @@ namespace 农产品物流管理系统
             this.label1.Size = new System.Drawing.Size(424, 43);
             this.label1.TabIndex = 0;
             this.label1.Text = "农产品生产入库登记";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("楷体", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(422, 201);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 19);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "label7";
             // 
             // Form5
             // 
@@ -207,5 +231,7 @@ namespace 农产品物流管理系统
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

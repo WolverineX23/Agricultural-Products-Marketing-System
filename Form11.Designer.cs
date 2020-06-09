@@ -55,6 +55,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(229, 64);
             this.comboBox1.Name = "comboBox1";
@@ -146,6 +147,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(229, 116);
             this.comboBox2.Name = "comboBox2";
@@ -170,7 +172,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form11";
-            this.Text = "Form11";
+            this.Text = "采购-物流";
             this.Load += new System.EventHandler(this.Form11_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

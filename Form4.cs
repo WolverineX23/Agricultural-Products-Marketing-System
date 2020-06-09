@@ -187,7 +187,7 @@ namespace 农产品物流管理系统
                 ligroup[i].tcontact = reader2.GetString("TContact");
 
                 richTextBox1.AppendText(ligroup[i].lno + "\t\t\t" + ligroup[i].goods + "\t\t" + ligroup[i].weight + "\t\t\t\t" + 
-                    fname + "\t\t\t" + fcontact + "\t\t\t" + faddress + "\t\t" + 
+                    fname + "\t\t" + fcontact + "\t\t\t" + faddress + "\t\t" + 
                     ligroup[i].tname + "\t\t" + ligroup[i].tcontact + "\t\t\t" + ligroup[i].taddress + "\t\t\t" +
                     ligroup[i].timeDeal.ToLongDateString() + "\t\t\t" + ligroup[i].timeArrive.ToShortDateString() + "\n");
                 i++;
