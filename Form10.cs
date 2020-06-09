@@ -55,18 +55,18 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form11(conn,user).ShowDialog();
+            
         }
 
 
         private void button2_Click(object sender, EventArgs e)
         {
             richTextBox1.Text = "";
-            richTextBox1.AppendText("\t\t\t\t\t   仓库\n");
-            richTextBox1.AppendText("生产编号\t农产品\t\t产量(kg)\t\t库存(kg)\t\t生产日期\n");
-            conn.Open();
-            string sql_storehouse = $"SELECT PNo,CNo,ProdDate,Yeild,FStock FROM plante WHERE FNo = '{user}'";
-            MySqlCommand cmd1 = new MySqlCommand(sql_storehouse, conn);
+            richTextBox1.AppendText("仓库：\n");
+            richTextBox1.AppendText("生产编号\t农产品\t\t库存(kg)\t\t保质期(天)\t\t生产日期\n");
+            /*conn.Open();
+            string sql_tradeshouse = $"SELECT PNo,CNo,ProdDate,Yeild,FStock FROM plante WHERE FNo = '{user}'";
+            MySqlCommand cmd1 = new MySqlCommand(sql_tradeshouse, conn);
             MySqlDataReader reader = cmd1.ExecuteReader();
             while (reader.Read())
             {
@@ -90,11 +90,81 @@ namespace 农产品物流管理系统
             }
             conn.Close();
             reader.Close();
+            */
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             new Form12(conn, user).ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            new Form11(conn, user).ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = "";
+            richTextBox1.AppendText("历史物流信息：\n");
+            richTextBox1.AppendText("物流单号\t\t\t物品\t\t\t重量(kg)\t\t\t发货人\t\t联系电话\t\t\t\t地址\t\t\t\t\t\t\t收货人\t\t联系电话\t\t\t\t地址\t\t\t\t\t\t\t\t交易日期\t\t\t\t签收日期\n");
+            LogInformation[] ligroup = new LogInformation[20];
+            LogInformation li = null;
+            int i = -1;
+
+            conn.Open();
+            string sql_log = $"SELECT LNo,FNo,LGoods,Weight,DateTime,ArrivalTime FROM logistics WHERE TNo = '{user}'";
+            MySqlCommand cmd = new MySqlCommand(sql_log, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            //添加基本信息
+            while (reader.Read())
+            {
+                li = new LogInformation();
+                li.lno = reader.GetString("LNo");
+                li.fno = reader.GetString("FNo");
+                li.goods = reader.GetString("LGoods");
+                li.weight = reader.GetInt32("Weight");
+                li.timeDeal = reader.GetDateTime("DateTime");
+                li.timeArrive = reader.GetDateTime("ArrivalTime");
+
+                ligroup[++i] = li;//往数组中添加该对象
+            }
+            reader.Close();
+
+            //添加商户信息
+            string tname, taddress, tcontact;
+            string sql_tradesman = $"SELECT TName,TAddress,TContact FROM tradesman WHERE TNo = '{user}'";
+            cmd = new MySqlCommand(sql_tradesman, conn);
+            MySqlDataReader reader1 = cmd.ExecuteReader();
+            reader1.Read();
+            tname = reader1.GetString("TName");
+            taddress = reader1.GetString("TAddress");
+            tcontact = reader1.GetString("TContact");
+            reader1.Close();
+
+            //添加农户信息
+            i = 0;
+            string sql_farmer = "";
+            MySqlDataReader reader2 = null;
+            while (ligroup[i] != null)
+            {
+                sql_farmer = $"SELECT FName,FAddress,FContact FROM farmer WHERE FNo = '{ligroup[i].fno}'";
+                cmd = new MySqlCommand(sql_farmer, conn);
+                reader2 = cmd.ExecuteReader();
+                reader2.Read();
+                ligroup[i].fname = reader2.GetString("FName");
+                ligroup[i].faddress = reader2.GetString("FAddress");
+                ligroup[i].fcontact = reader2.GetString("FContact");
+
+                richTextBox1.AppendText(ligroup[i].lno + "\t\t\t" + ligroup[i].goods + "\t\t" + ligroup[i].weight + "\t\t\t\t" +
+                    tname + "\t\t" + tcontact + "\t\t\t" + taddress + "\t\t" +
+                    ligroup[i].fname + "\t\t" + ligroup[i].fcontact + "\t\t\t" + ligroup[i].faddress + "\t\t\t" +
+                    ligroup[i].timeDeal.ToLongDateString() + "\t\t\t" + ligroup[i].timeArrive.ToShortDateString() + "\n");
+                i++;
+                reader2.Close();
+            }
+
+            conn.Close();
         }
     }
 }

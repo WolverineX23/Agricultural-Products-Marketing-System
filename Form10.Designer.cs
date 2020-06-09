@@ -43,11 +43,11 @@
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.button1.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(77, 274);
+            this.button1.Location = new System.Drawing.Point(77, 171);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(230, 80);
             this.button1.TabIndex = 0;
-            this.button1.Text = "进货";
+            this.button1.Text = "保鲜期/库存提醒";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -109,13 +109,15 @@
             // 
             // button5
             // 
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button5.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button5.Location = new System.Drawing.Point(77, 171);
+            this.button5.Location = new System.Drawing.Point(77, 276);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(230, 80);
             this.button5.TabIndex = 6;
-            this.button5.Text = "保鲜期/库存提醒";
+            this.button5.Text = "进货";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -127,6 +129,7 @@
             this.button6.TabIndex = 7;
             this.button6.Text = "物流记录";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form10
             // 

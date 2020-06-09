@@ -42,11 +42,11 @@
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(77, 288);
+            this.button1.Location = new System.Drawing.Point(77, 171);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(230, 80);
             this.button1.TabIndex = 0;
-            this.button1.Text = "农产品生产入库";
+            this.button1.Text = "保鲜期提醒";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -98,17 +98,19 @@
             // 
             // button4
             // 
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button4.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.Location = new System.Drawing.Point(77, 171);
+            this.button4.Location = new System.Drawing.Point(77, 285);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(230, 80);
             this.button4.TabIndex = 5;
-            this.button4.Text = "保鲜期提醒";
+            this.button4.Text = "农产品生产入库";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button5.Font = new System.Drawing.Font("楷体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button5.Location = new System.Drawing.Point(77, 636);
             this.button5.Name = "button5";
