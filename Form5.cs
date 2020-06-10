@@ -151,7 +151,7 @@ namespace 农产品物流管理系统
 
             try
             {
-                string sql_ins = $"insert into plante (PNo,FNo,CNo,ProdDate,Yeild,FStock) values('{textBox2.Text}','{user}','{Cno}','{dateTimePicker1.Value.ToString()}',{textBox1.Text},{textBox1.Text});";
+                string sql_ins = $"insert into plante (PNo,FNo,CNo,ProdDate,Yeild,FStock,IsFresh) values('{textBox2.Text}','{user}','{Cno}','{dateTimePicker1.Value.ToString()}','{textBox1.Text}','{textBox1.Text}',0);";
                 cmd = new MySqlCommand(sql_ins, conn);
                 int result = cmd.ExecuteNonQuery();
                 MessageBox.Show("入库成功!", "入库提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);

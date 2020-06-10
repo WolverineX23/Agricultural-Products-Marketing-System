@@ -15,20 +15,10 @@ namespace 农产品物流管理系统
     {
         MySqlConnection conn = null;
         string user = "";
-        DateTime timePro = new DateTime();//获取产品生产日期
-        string pno = "";//生产编号
-        string cno;//农产品编号
-        string cname = "";
-        int yeild = 0;//产量
-        int stock = 0;//库存
-        int freshday = 0;//农产品保鲜期
-        int leave;//剩余保鲜天数
         SubDate sd;
         public Form10(MySqlConnection conn, string user)
         {
             InitializeComponent();
-            richTextBox1.AppendText("保鲜期到期提醒(低于原保质期天数的0.2倍):\n");
-            richTextBox1.AppendText("农产品\t\t\t库存(kg)\t\t\t剩余保质期(day)\n");
 
             this.conn = conn;
             this.user = user;
@@ -41,10 +31,103 @@ namespace 农产品物流管理系统
             MySqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             name = reader.GetString("TName");
-            reader.Dispose();
-            conn.Close();
+            reader.Close();
             label1.Text = "欢迎" + name + "~";
 
+            //保鲜期到期/库存提醒
+            richTextBox1.AppendText("保鲜期到期/库存不足提醒(低于原保质期天数的0.2倍/库存少于100kg):\n");
+            richTextBox1.AppendText("农产品\t\t\t库存(kg)\t\t库存提醒\t\t保质期(day)\t\t剩余保质期(day)\n");
+            DateTime timeNow = System.DateTime.Now;
+            Tradesman[] freshGroup = new Tradesman[30];
+            Tradesman tradesFre = null;
+            int i = -1;
+            //获取pno数组
+            string sql_deal = $"SELECT PNo,TStock FROM deal WHERE TNo = '{user}'";
+            cmd = new MySqlCommand(sql_deal, conn);
+            MySqlDataReader reader1 = cmd.ExecuteReader();
+            while (reader1.Read())
+            {
+                tradesFre = new Tradesman();
+                tradesFre.pno = reader1.GetString("PNo");
+                tradesFre.stock = reader1.GetInt32("TStock");
+
+                freshGroup[++i] = tradesFre;
+            }
+            reader1.Close();
+
+            //获取cno在通过全局常量crops获得cname和fresh信息
+            i = 0;
+            int j;
+            MySqlDataReader reader2 = null;
+            string sql_getcno = "";
+            while (freshGroup[i] != null)
+            {
+                sql_getcno = $"SELECT CNo,ProdDate FROM plante WHERE PNo = '{freshGroup[i].pno}'";
+                cmd = new MySqlCommand(sql_getcno, conn);
+                reader2 = cmd.ExecuteReader();
+                reader2.Read();
+                freshGroup[i].cno = reader2.GetString("CNo");
+                freshGroup[i].timePro = reader2.GetDateTime("ProdDate");
+
+                //获取commom.crops中值
+                j = 0;
+                while (Common.crops[j] != null)
+                {
+                    if (Common.crops[j].cno.Equals(freshGroup[i].cno))
+                    {
+                        freshGroup[i].cname = Common.crops[j].cname;//get cname
+                        freshGroup[i].freshness = Common.crops[j].freshness;// get freshness
+                        sd = new SubDate(freshGroup[i].timePro, timeNow);
+                        freshGroup[i].leave = freshGroup[i].freshness-sd.dateSub();//get剩余保质期
+                        break;
+                    }
+                    j++;
+                }
+                if (freshGroup[i].leave <= 0)
+                {
+                    if (freshGroup[i].stock < 100)
+                    {
+                        richTextBox1.AppendText(freshGroup[i].cname + "\t\t\t" + freshGroup[i].stock + "\t\t\t不足\t\t\t" +
+                            freshGroup[i].freshness + "\t\t\t\t已过期\n");
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText(freshGroup[i].cname + "\t\t\t" + freshGroup[i].stock + "\t\t\t充足\t\t\t" +
+                            freshGroup[i].freshness + "\t\t\t\t已过期\n");
+                    }
+                    freshGroup[i].isFresh = 1;//过期
+                }
+                else if (freshGroup[i].leave < freshGroup[i].freshness * 0.2)
+                {
+                    if (freshGroup[i].stock < 100)
+                    {
+                        richTextBox1.AppendText(freshGroup[i].cname + "\t\t\t" + freshGroup[i].stock + "\t\t\t不足\t\t\t" +
+                            freshGroup[i].freshness + "\t\t\t\t" + freshGroup[i].leave + "\n");
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText(freshGroup[i].cname + "\t\t\t" + freshGroup[i].stock + "\t\t\t充足\t\t\t" +
+                            freshGroup[i].freshness + "\t\t\t\t" + freshGroup[i].leave + "\n");
+                    }
+                }
+                else { }
+                i++;
+                reader2.Dispose();
+            }
+            reader2.Close();
+
+            //UPDATE plante - IsFresh
+            string sql_update = "";
+            i = 0;
+            while(freshGroup[i] != null)
+            {
+                sql_update = $"UPDATE plante SET IsFresh = '{freshGroup[i].isFresh}' WHERE PNo = '{freshGroup[i].pno}'";
+                cmd = new MySqlCommand(sql_update, conn);
+                cmd.ExecuteNonQuery();
+                i++;
+            }
+
+            conn.Close();
         }
 
         private void Form10_Load(object sender, EventArgs e)
@@ -55,7 +138,91 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            richTextBox1.Text = "";
+            conn.Open();
+            MySqlCommand cmd = null;
+            //保鲜期到期/库存提醒
+            richTextBox1.AppendText("保鲜期到期/库存不足提醒(低于原保质期天数的0.2倍/库存少于100kg):\n");
+            richTextBox1.AppendText("农产品\t\t\t库存(kg)\t\t库存提醒\t\t保质期(day)\t\t剩余保质期(day)\n");
+            DateTime timeNow = System.DateTime.Now;
+            Tradesman[] freshGroup = new Tradesman[30];
+            Tradesman tradesFre = null;
+            int i = -1;
+            //获取pno数组
+            string sql_deal = $"SELECT PNo,TStock FROM deal WHERE TNo = '{user}'";
+            cmd = new MySqlCommand(sql_deal, conn);
+            MySqlDataReader reader1 = cmd.ExecuteReader();
+            while (reader1.Read())
+            {
+                tradesFre = new Tradesman();
+                tradesFre.pno = reader1.GetString("PNo");
+                tradesFre.stock = reader1.GetInt32("TStock");
+
+                freshGroup[++i] = tradesFre;
+            }
+            reader1.Close();
+
+            //获取cno在通过全局常量crops获得cname和fresh信息
+            i = 0;
+            int j;
+            MySqlDataReader reader2 = null;
+            string sql_getcno = "";
+            while (freshGroup[i] != null)
+            {
+                sql_getcno = $"SELECT CNo,ProdDate FROM plante WHERE PNo = '{freshGroup[i].pno}'";
+                cmd = new MySqlCommand(sql_getcno, conn);
+                reader2 = cmd.ExecuteReader();
+                reader2.Read();
+                freshGroup[i].cno = reader2.GetString("CNo");
+                freshGroup[i].timePro = reader2.GetDateTime("ProdDate");
+
+                //获取commom.crops中值
+                j = 0;
+                while (Common.crops[j] != null)
+                {
+                    if (Common.crops[j].cno.Equals(freshGroup[i].cno))
+                    {
+                        freshGroup[i].cname = Common.crops[j].cname;//get cname
+                        freshGroup[i].freshness = Common.crops[j].freshness;// get freshness
+                        sd = new SubDate(freshGroup[i].timePro, timeNow);
+                        freshGroup[i].leave = freshGroup[i].freshness - sd.dateSub();//get剩余保质期
+                        break;
+                    }
+                    j++;
+                }
+                if (freshGroup[i].leave <= 0)
+                {
+                    if (freshGroup[i].stock < 100)
+                    {
+                        richTextBox1.AppendText(freshGroup[i].cname + "\t\t\t" + freshGroup[i].stock + "\t\t\t不足\t\t\t" +
+                            freshGroup[i].freshness + "\t\t\t\t已过期\n");
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText(freshGroup[i].cname + "\t\t\t" + freshGroup[i].stock + "\t\t\t充足\t\t\t" +
+                            freshGroup[i].freshness + "\t\t\t\t已过期\n");
+                    }
+                    freshGroup[i].isFresh = 1;//过期
+                }
+                else if (freshGroup[i].leave < freshGroup[i].freshness * 0.2)
+                {
+                    if (freshGroup[i].stock < 100)
+                    {
+                        richTextBox1.AppendText(freshGroup[i].cname + "\t\t\t" + freshGroup[i].stock + "\t\t\t不足\t\t\t" +
+                            freshGroup[i].freshness + "\t\t\t\t" + freshGroup[i].leave + "\n");
+                    }
+                    else
+                    {
+                        richTextBox1.AppendText(freshGroup[i].cname + "\t\t\t" + freshGroup[i].stock + "\t\t\t充足\t\t\t" +
+                            freshGroup[i].freshness + "\t\t\t\t" + freshGroup[i].leave + "\n");
+                    }
+                }
+                else { }
+                i++;
+                reader2.Dispose();
+            }
+            reader2.Close();
+            conn.Close();
         }
 
 
@@ -157,8 +324,8 @@ namespace 农产品物流管理系统
                 ligroup[i].fcontact = reader2.GetString("FContact");
 
                 richTextBox1.AppendText(ligroup[i].lno + "\t\t\t" + ligroup[i].goods + "\t\t" + ligroup[i].weight + "\t\t\t\t" +
-                    tname + "\t\t" + tcontact + "\t\t\t" + taddress + "\t\t" +
-                    ligroup[i].fname + "\t\t" + ligroup[i].fcontact + "\t\t\t" + ligroup[i].faddress + "\t\t\t" +
+                    ligroup[i].fname + "\t\t" + ligroup[i].fcontact + "\t\t\t" + ligroup[i].faddress + "\t\t" +
+                     tname+ "\t\t" + tcontact + "\t\t\t" + taddress + "\t\t\t" +
                     ligroup[i].timeDeal.ToLongDateString() + "\t\t\t" + ligroup[i].timeArrive.ToShortDateString() + "\n");
                 i++;
                 reader2.Close();
