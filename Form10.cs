@@ -228,36 +228,63 @@ namespace 农产品物流管理系统
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             richTextBox1.Text = "";
             richTextBox1.AppendText("仓库：\n");
-            richTextBox1.AppendText("生产编号\t农产品\t\t库存(kg)\t\t保质期(天)\t\t生产日期\n");
-            /*conn.Open();
-            string sql_tradeshouse = $"SELECT PNo,CNo,ProdDate,Yeild,FStock FROM plante WHERE FNo = '{user}'";
-            MySqlCommand cmd1 = new MySqlCommand(sql_tradeshouse, conn);
-            MySqlDataReader reader = cmd1.ExecuteReader();
-            while (reader.Read())
+            richTextBox1.AppendText("生产编号\t\t农产品\t\t库存(kg)\t\t保质期(天)\t\t生产日期\n");
+
+            Tradesman[] freshGroup = new Tradesman[30];
+            Tradesman tradesFre = null;
+            MySqlCommand cmd = null;
+            int i = -1;
+            conn.Open();
+            //获取pno数组
+            string sql_deal = $"SELECT PNo,TStock FROM deal WHERE TNo = '{user}'";
+            cmd = new MySqlCommand(sql_deal, conn);
+            MySqlDataReader reader1 = cmd.ExecuteReader();
+            while (reader1.Read())
             {
-                pno = reader.GetString("PNo");
-                cno = reader.GetString("CNo");
-                timePro = reader.GetDateTime("ProdDate");
-                yeild = reader.GetInt32("Yeild");
-                stock = reader.GetInt32("FStock");
-                int i = 0;
-                while (Common.crops[i] != null)
+                tradesFre = new Tradesman();
+                tradesFre.pno = reader1.GetString("PNo");
+                tradesFre.stock = reader1.GetInt32("TStock");
+
+                freshGroup[++i] = tradesFre;
+            }
+            reader1.Close();
+
+            //获取cno在通过全局常量crops获得cname和fresh信息
+            i = 0;
+            int j;
+            MySqlDataReader reader2 = null;
+            string sql_getcno = "";
+            while (freshGroup[i] != null)
+            {
+                sql_getcno = $"SELECT CNo,ProdDate FROM plante WHERE PNo = '{freshGroup[i].pno}'";
+                cmd = new MySqlCommand(sql_getcno, conn);
+                reader2 = cmd.ExecuteReader();
+                reader2.Read();
+                freshGroup[i].cno = reader2.GetString("CNo");
+                freshGroup[i].timePro = reader2.GetDateTime("ProdDate");
+
+                //获取commom.crops中值
+                j = 0;
+                while (Common.crops[j] != null)
                 {
-                    if (Common.crops[i].cno.Equals(cno))
+                    if (Common.crops[j].cno.Equals(freshGroup[i].cno))
                     {
-                        freshday = Common.crops[i].freshness;
-                        cname = Common.crops[i].cname;
+                        freshGroup[i].cname = Common.crops[j].cname;//get cname
+                        freshGroup[i].freshness = Common.crops[j].freshness;// get freshness
+                        richTextBox1.AppendText(freshGroup[i].pno + "\t\t" + freshGroup[i].cname + "\t\t" + freshGroup[i].stock + "\t\t\t" +
+                            freshGroup[i].freshness + "\t\t\t\t" + freshGroup[i].timePro.ToLongDateString() + "\n");
                         break;
                     }
-                    i++;
+                    j++;
                 }
-                richTextBox1.AppendText(pno + "\t" + cname + "\t\t" + yeild + "\t\t\t" + stock + "\t\t\t" + timePro.ToShortDateString() + "\n");
+                i++;
+                reader2.Dispose();
             }
             conn.Close();
-            reader.Close();
-            */
+            reader2.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -332,6 +359,54 @@ namespace 农产品物流管理系统
             }
 
             conn.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string lno = "";
+            int id = 0;
+            string fno = "";
+            string goods = "";
+            int weight = 0;
+            DateTime timeDeal = new DateTime();
+            DateTime timeArrive = new DateTime();
+            richTextBox1.Text = "";
+            richTextBox1.AppendText("（农户-商户）批发入库记录：\n");
+            richTextBox1.AppendText("批发单号\t\t农户账号\t\t农产品\t\t重量(kg)\t\t交易日期\t\t到达日期\n");
+
+            conn.Open();
+            string sql_f_t = $"SELECT LNo,FNo,LGoods,Weight,DateTime,ArrivalTime FROM logistics WHERE TNo = '{user}'";
+            MySqlCommand cmd = new MySqlCommand(sql_f_t, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                lno = reader.GetString("LNo");
+                fno = reader.GetString("FNo");
+                goods = reader.GetString("LGoods");
+                weight = reader.GetInt32("Weight");
+                timeDeal = reader.GetDateTime("DateTime");
+                timeArrive = reader.GetDateTime("ArrivalTime");
+                richTextBox1.AppendText(lno+"\t\t"+fno + "\t\t\t" + goods + "\t\t" + weight + "\t\t\t" + 
+                    timeDeal.ToShortDateString() + "\t\t" + timeArrive.ToLongDateString() + "\n");
+            }
+            reader.Dispose();
+
+            richTextBox1.AppendText("\n(商户-消费者)销售记录：\n");
+            richTextBox1.AppendText("消费单号\t\t购买产品\t\t重量(kg)\t\t销售时间\n");
+            string sql_t_c = $"SELECT ConNo,Crop,Weight,TimeConsume FROM consume WHERE TNo = '{user}'";
+            cmd = new MySqlCommand(sql_t_c, conn);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                id = reader.GetInt32("ConNo");
+                goods = reader.GetString("Crop");
+                weight = reader.GetInt32("Weight");
+                timeDeal = reader.GetDateTime("TimeConsume");
+
+                richTextBox1.AppendText(id + "\t\t\t" + goods + "\t\t" + weight + "\t\t\t" + timeDeal.ToLongDateString() + "\n");
+            }
+            conn.Close();
+            reader.Close();
         }
     }
 }

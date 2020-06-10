@@ -253,12 +253,6 @@ namespace 农产品物流管理系统
                 goods = reader.GetString("LGoods");
                 weight = reader.GetInt32("Weight");
                 timeDeal = reader.GetDateTime("DateTime");
-
-                /*string sql_tname = $"SELECT TName FROM tradesman WHERE TNo = '{tno}'";
-                MySqlCommand cmd1 = new MySqlCommand(sql_tname, conn);
-                MySqlDataReader reader1 = cmd1.ExecuteReader();
-                tname = reader1.GetString("TName");*/
-
                 richTextBox1.AppendText(tno + "\t\t\t" + goods + "\t\t" + weight + "\t\t\t" + timeDeal.ToShortDateString() + "\n");
             }
             conn.Close();
