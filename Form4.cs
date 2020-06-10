@@ -96,18 +96,53 @@ namespace 农产品物流管理系统
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form5(conn,user).ShowDialog();
+            richTextBox1.Text = "";
+            richTextBox1.AppendText("保鲜期到期提醒(低于原保质期天数的0.2倍):\n");
+            richTextBox1.AppendText("农产品\t\t\t库存(kg)\t\t\t剩余保质期(day)\n");
+
+            DateTime timeNow = System.DateTime.Now;//获取当前时间
+
+            conn.Open();
+            string sql_date = $"SELECT CNo,ProdDate,FStock FROM plante WHERE FNo = '{user}'";
+            MySqlCommand cmd1 = new MySqlCommand(sql_date, conn);
+            MySqlDataReader reader1 = cmd1.ExecuteReader();
+            while (reader1.Read())
+            {
+                cno = reader1.GetString("CNo");
+                timePro = reader1.GetDateTime("ProdDate");
+                stock = reader1.GetInt32("FStock");
+                int i = 0;
+                while (Common.crops[i] != null)
+                {
+                    if (Common.crops[i].cno.Equals(cno))
+                    {
+                        freshday = Common.crops[i].freshness;
+                        cname = Common.crops[i].cname;
+                        break;
+                    }
+                    i++;
+                }
+                sd = new SubDate(timePro, timeNow);
+                leave = freshday - sd.dateSub();//计算剩余天数
+                if (leave > freshday * 0.2) { }
+                else if (leave <= 0)
+                    richTextBox1.AppendText(cname + "\t\t\t" + stock + "\t\t\t\t已过期\n");
+                else
+                    richTextBox1.AppendText(cname + "\t\t\t" + stock + "\t\t\t\t" + leave + "\n");
+            }
+            conn.Close();
+            reader1.Close();
         }
 
 
         private void button2_Click(object sender, EventArgs e)
         {
             richTextBox1.Text = "";
-            richTextBox1.AppendText("\t\t\t\t\t   仓库\n");
+            richTextBox1.AppendText("仓库：\n");
             richTextBox1.AppendText("生产编号\t农产品\t\t产量(kg)\t\t库存(kg)\t\t生产日期\n");
             conn.Open();
-            string sql_storehouse = $"SELECT PNo,CNo,ProdDate,Yeild,FStock FROM plante WHERE FNo = '{user}'";
-            MySqlCommand cmd1 = new MySqlCommand(sql_storehouse, conn);
+            string sql_farmerhouse = $"SELECT PNo,CNo,ProdDate,Yeild,FStock FROM plante WHERE FNo = '{user}'";
+            MySqlCommand cmd1 = new MySqlCommand(sql_farmerhouse, conn);
             MySqlDataReader reader = cmd1.ExecuteReader();
             while (reader.Read())
             {
@@ -199,42 +234,7 @@ namespace 农产品物流管理系统
 
         private void button4_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = "";
-            richTextBox1.AppendText("保鲜期到期提醒(低于原保质期天数的0.2倍):\n");
-            richTextBox1.AppendText("农产品\t\t\t库存(kg)\t\t\t剩余保质期(day)\n");
-
-            DateTime timeNow = System.DateTime.Now;//获取当前时间
-
-            conn.Open();
-            string sql_date = $"SELECT CNo,ProdDate,FStock FROM plante WHERE FNo = '{user}'";
-            MySqlCommand cmd1 = new MySqlCommand(sql_date, conn);
-            MySqlDataReader reader1 = cmd1.ExecuteReader();
-            while (reader1.Read())
-            {
-                cno = reader1.GetString("CNo");
-                timePro = reader1.GetDateTime("ProdDate");
-                stock = reader1.GetInt32("FStock");
-                int i = 0;
-                while (Common.crops[i] != null)
-                {
-                    if (Common.crops[i].cno.Equals(cno))
-                    {
-                        freshday = Common.crops[i].freshness;
-                        cname = Common.crops[i].cname;
-                        break;
-                    }
-                    i++;
-                }
-                sd = new SubDate(timePro, timeNow);
-                leave = freshday - sd.dateSub();//计算剩余天数
-                if (leave > freshday * 0.2) { }
-                else if (leave <= 0)
-                    richTextBox1.AppendText(cname + "\t\t\t" + stock + "\t\t\t\t已过期\n");
-                else
-                    richTextBox1.AppendText(cname + "\t\t\t" + stock + "\t\t\t\t" + leave + "\n");
-            }
-            conn.Close();
-            reader1.Close();
+            new Form5(conn, user).ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)

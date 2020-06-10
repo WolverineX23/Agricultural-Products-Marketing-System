@@ -11,37 +11,29 @@ using MySql.Data.MySqlClient;
 
 namespace 农产品物流管理系统
 {
-
     public partial class Form12 : Form
     {
-        MySqlConnection conn;
-        string user;
+
+        MySqlConnection conn = null;
+        string user = "";
         public Form12(MySqlConnection conn, string user)
         {
+            InitializeComponent();
             this.conn = conn;
             this.user = user;
-            InitializeComponent();
-
-            conn.Open();
-            string sql = "select CName from crops ;";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                comboBox2.Items.Add($"{reader.GetString("CName")}");
-            }
-            reader.Dispose();
-            conn.Close();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void Form12_Load(object sender, EventArgs e)
         {
             panel1.BackColor = Color.FromArgb(125, 255, 255, 255);
+            label1.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label2.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label3.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label4.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label5.BackColor = Color.FromArgb(0, 255, 255, 255);
+            label6.BackColor = Color.FromArgb(0, 255, 255, 255);
+            
         }
     }
 }
