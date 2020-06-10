@@ -21,6 +21,16 @@ namespace 农产品物流管理系统
             InitializeComponent();
             this.conn = conn;
             this.user = user;
+            conn.Open();
+            string sql = "select CName from crops ;";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                comboBox1.Items.Add($"{reader.GetString("CName")}");
+            }
+            reader.Dispose();
+            conn.Close();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -91,6 +101,41 @@ namespace 农产品物流管理系统
                 conn.Close();
             }
             textBox2.Text = Lno;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int count=0;
+            string Fno,Cno="";
+            string[] fno = new string[100];
+            comboBox2.Items.Clear();
+            foreach (Crops crop in Common.crops)
+            {
+                if(comboBox1.SelectedItem.ToString()==crop.cname)
+                {
+                    Cno = crop.cno;
+                }
+            }
+            conn.Open();
+            string sql = $"select FNo from plante where CNo= '{Cno}' ;";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                fno[count] = reader.GetString("FNo");
+                count++;
+            }//获取FNO
+            reader.Dispose();
+            for (int i=0;i<count;i++)
+            {
+                string sql_getname = $"select FName from farmer where FNo= '{fno[i]}' ;";
+                cmd = new MySqlCommand(sql_getname, conn);
+                reader = cmd.ExecuteReader();
+                reader.Read();
+                comboBox2.Items.Add($"{reader.GetString("FName")}");
+                reader.Dispose();
+            }
+            conn.Close();
         }
     }
 }
