@@ -167,6 +167,9 @@ namespace 农产品物流管理系统
             }
         }
 
-   
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
