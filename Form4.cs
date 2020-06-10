@@ -26,7 +26,6 @@ namespace 农产品物流管理系统
 
         //交易物流
         string tno = "";//商户编号
-        string tname = "";//商户姓名
         string goods = "";//交易物资
         int weight=0;//交易重量
         DateTime timeDeal = new DateTime();//交易时间

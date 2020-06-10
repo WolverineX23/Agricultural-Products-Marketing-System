@@ -13,7 +13,6 @@ namespace 农产品物流管理系统
     public partial class Form2 : Form
     {
         MySqlConnection conn;
-        String user = "";
         public Form2(MySqlConnection conn)
         {
             this.conn = conn;

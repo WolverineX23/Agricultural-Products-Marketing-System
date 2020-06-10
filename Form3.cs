@@ -144,7 +144,6 @@ namespace 农产品物流管理系统
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int count=0;
             comboBox2.Items.Clear();
             string selected;
             string point;
