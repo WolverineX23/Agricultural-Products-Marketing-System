@@ -35,5 +35,37 @@ namespace 农产品物流管理系统
             label6.BackColor = Color.FromArgb(0, 255, 255, 255);
             
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedItem == null)
+            {
+                label2.Text = "请选择农产品！";
+                return;
+            }
+            else
+            {
+                label2.Text = "";
+            }
+
+            int tmp;
+            if (!int.TryParse(textBox1.Text, out tmp))
+            {
+                label6.Text = "请输入数字!";
+                return;
+            }
+            else
+            {
+                int num = 0;
+                num = int.Parse(textBox1.Text);
+                if (num <= 0)
+                {
+                    label6.Text = "请输入正整数";
+                    return;
+                }
+                else
+                    label6.Text = "";
+            }
+        }
     }
 }

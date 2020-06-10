@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using K4os.Compression.LZ4.Streams;
 using MySql.Data.MySqlClient;
 
 namespace 农产品物流管理系统
@@ -110,15 +111,15 @@ namespace 农产品物流管理系统
             textBox2.Text = Lno;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            int count=0;
-            string Fno,Cno="";
+            int count = 0;
+            string Fno, Cno = "";
             string[] fno = new string[100];
             comboBox2.Items.Clear();
             foreach (Crops crop in Common.crops)
             {
-                if(comboBox1.SelectedItem.ToString()==crop.cname)
+                if (comboBox1.SelectedItem.ToString() == crop.cname)
                 {
                     Cno = crop.cno;
                 }
@@ -133,7 +134,7 @@ namespace 农产品物流管理系统
                 count++;
             }//获取FNO
             reader.Dispose();
-            for (int i=0;i<count;i++)
+            for (int i = 0; i < count; i++)
             {
                 string sql_getname = $"select FName from farmer where FNo= '{fno[i]}' ;";
                 cmd = new MySqlCommand(sql_getname, conn);
@@ -143,6 +144,64 @@ namespace 农产品物流管理系统
                 reader.Dispose();
             }
             conn.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem == null)
+            {
+                label8.Text = "请选择农产品！";
+                return;
+            }
+            else
+            {
+                label8.Text = "";
+            }
+            if (comboBox2.SelectedItem==null)
+            {
+                label9.Text = "请选择农户！";
+                return;
+            }
+            else
+            {
+                label9.Text = "";
+            }
+
+
+            int tmp;
+            if (!int.TryParse(textBox1.Text, out tmp))
+            {
+                label10.Text = "请输入数字!";
+                return;
+            }
+            else
+            {
+                int num = 0;
+                num = int.Parse(textBox1.Text);
+                if (num <= 0)
+                {
+                    label10.Text = "请输入正整数";
+                    return;
+                }
+                else
+                    label10.Text = "";
+            }
+            SubDate sub = new SubDate(dateTimePicker1.Value,dateTimePicker2.Value);
+            if(sub.dateSub()<=0)
+            {
+                label11.Text = "请输入正确预计日期！";
+                return;
+            }
+            else
+            {
+                label11.Text = "";
+            }
+
         }
     }
 }
