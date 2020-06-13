@@ -8,7 +8,7 @@ namespace 农产品物流管理系统
 {
     class LogInformation
     {
-        public string lno, goods, fno, tno, fname, fcontact, faddress, tname, tcontact, taddress;
+        public string lno, goods, fno, tno, fname, fcontact, faddress, tname, tcontact, taddress, cno;
         public int weight;
         public DateTime timeDeal, timeArrive;
 
@@ -17,6 +17,7 @@ namespace 农产品物流管理系统
             lno = "";
             fno = "";
             tno = "";
+            cno = "";
 
             goods = "";
             fname = "";

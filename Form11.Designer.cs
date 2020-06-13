@@ -97,7 +97,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(655, 527);
             this.panel1.TabIndex = 2;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button2
             // 
@@ -118,9 +117,9 @@
             this.label11.ForeColor = System.Drawing.Color.Red;
             this.label11.Location = new System.Drawing.Point(461, 353);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(79, 19);
+            this.label11.Size = new System.Drawing.Size(19, 19);
             this.label11.TabIndex = 16;
-            this.label11.Text = "label11";
+            this.label11.Text = " ";
             // 
             // label10
             // 
@@ -129,9 +128,9 @@
             this.label10.ForeColor = System.Drawing.Color.Red;
             this.label10.Location = new System.Drawing.Point(461, 176);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(79, 19);
+            this.label10.Size = new System.Drawing.Size(19, 19);
             this.label10.TabIndex = 15;
-            this.label10.Text = "label10";
+            this.label10.Text = " ";
             // 
             // label9
             // 
@@ -140,9 +139,9 @@
             this.label9.ForeColor = System.Drawing.Color.Red;
             this.label9.Location = new System.Drawing.Point(461, 124);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 19);
+            this.label9.Size = new System.Drawing.Size(19, 19);
             this.label9.TabIndex = 14;
-            this.label9.Text = "label9";
+            this.label9.Text = " ";
             // 
             // label8
             // 
@@ -151,9 +150,9 @@
             this.label8.ForeColor = System.Drawing.Color.Red;
             this.label8.Location = new System.Drawing.Point(460, 70);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 19);
+            this.label8.Size = new System.Drawing.Size(19, 19);
             this.label8.TabIndex = 3;
-            this.label8.Text = "label8";
+            this.label8.Text = " ";
             // 
             // button1
             // 
@@ -265,7 +264,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(209, 25);
             this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // contextMenuStrip1
             // 
