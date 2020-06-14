@@ -328,7 +328,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form3";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "农户注册";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.panel1.ResumeLayout(false);

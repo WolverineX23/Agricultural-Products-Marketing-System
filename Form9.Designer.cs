@@ -327,7 +327,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form9";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "商户注册";
             this.Load += new System.EventHandler(this.Form9_Load);
             this.panel1.ResumeLayout(false);

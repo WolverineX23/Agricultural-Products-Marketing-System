@@ -64,6 +64,7 @@ namespace 农产品物流管理系统
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             new Form2(conn).ShowDialog();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)

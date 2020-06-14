@@ -150,6 +150,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form10";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "商户操作界面";
             this.Load += new System.EventHandler(this.Form10_Load);
             this.ResumeLayout(false);

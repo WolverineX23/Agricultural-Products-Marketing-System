@@ -166,6 +166,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form12";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "商户零售";
             this.Load += new System.EventHandler(this.Form12_Load);
             this.panel1.ResumeLayout(false);

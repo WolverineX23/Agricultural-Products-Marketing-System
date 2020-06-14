@@ -282,6 +282,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form11";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "采购-物流";
             this.Load += new System.EventHandler(this.Form11_Load);
             this.panel1.ResumeLayout(false);

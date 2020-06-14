@@ -136,6 +136,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form4";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "农户操作界面";
             this.Load += new System.EventHandler(this.Form4_Load);
             this.ResumeLayout(false);
